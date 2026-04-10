@@ -8,10 +8,10 @@ class Database {
 
         if (self::$connection === null) {
 
-            $host = "localhost";
-            $db   = "tarefas";
-            $user = "root";
-            $pass = "aldo";
+            $host = getenv('DB_HOST') ?: 'localhost';
+            $db   = getenv('DB_NAME') ?: 'tarefas';
+            $user = getenv('DB_USER') ?: 'root';
+            $pass = getenv('DB_PASS') !== false ? getenv('DB_PASS') : '';
 
             try {
 

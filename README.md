@@ -115,22 +115,34 @@ CREATE TABLE tarefas (
 
 ### 3️⃣ Configurar conexão com banco
 
-No arquivo de conexão (ex: `Database.php`):
+Copie o arquivo `.env.example` para `.env` e ajuste os valores conforme seu ambiente:
 
-```php
-$host = 'localhost';
-$db   = 'tarefas_db';
-$user = 'root';
-$pass = '';
+```bash
+cp .env.example .env
 ```
+
+Variáveis disponíveis:
+
+| Variável  | Descrição              | Padrão      |
+|-----------|------------------------|-------------|
+| `DB_HOST` | Host do banco de dados | `localhost` |
+| `DB_NAME` | Nome do banco de dados | `tarefas`   |
+| `DB_USER` | Usuário do banco       | `root`      |
+| `DB_PASS` | Senha do banco         | *(vazio)*   |
+
+As variáveis de ambiente são lidas em `config/Database.php` via `getenv()`. Você pode defini-las diretamente no servidor (Apache, Nginx, Docker, etc.) ou exportá-las no shell antes de iniciar o PHP.
 
 ---
 
 ### 4️⃣ Rodar o projeto
 
-Se estiver usando PHP embutido:
+Se estiver usando PHP embutido, exporte as variáveis e inicie o servidor:
 
 ```bash
+export DB_HOST=localhost
+export DB_NAME=tarefas
+export DB_USER=root
+export DB_PASS=
 php -S localhost:8000 -t public
 ```
 
